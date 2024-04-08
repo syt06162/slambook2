@@ -6,4 +6,23 @@ https://deepprogramming.tistory.com/30
 g++ .\helloSLAM.cpp
 ./a.exe
 
-2.
+
+2. cmake, build
+* windows cmake install
+https://ndb796.tistory.com/365
+
+* cmake, build, execute
+cmake -B build -G "Visual Studio 17" .
+cmake --build build
+.\build\Debug\helloSLAM.exe
+
+
+3. cmake, build with Visual Studio 2022
+* (on Initial project open) CMake Integrate : select CMakeLists.txt
+-> build directory on ./out/build/x64-Debug
+
+* must set MSVC settings: BUILD_SHARED_LIBS
+if(true)
+    set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS TRUE)
+    set(BUILD_SHARED_LIBS TRUE)
+endif()

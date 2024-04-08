@@ -1,22 +1,31 @@
-# 声明要求的 cmake 最低版本
+# Declare the required cmake minimum version
 cmake_minimum_required(VERSION 2.8)
 
-# 声明一个 cmake 工程
+# yejoon: shared library using in MSVC
+if(true)
+    set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS TRUE)
+    set(BUILD_SHARED_LIBS TRUE)
+endif()
+
+# Declare a cmake project
 project(HelloSLAM)
 
-# 设置编译模式
+# Set the build mode
 set(CMAKE_BUILD_TYPE "Debug")
 
-# 添加一个可执行程序
-# 语法：add_executable( 程序名 源代码文件 ）
+# Add an executable
+# Syntax: add_executable( executable_name source_code_file )
 add_executable(helloSLAM helloSLAM.cpp)
 
-# 添加hello库
-add_library(hello libHelloSLAM.cpp)
-# 共享库
+
+
+# Add the hello library
+## add_library(hello libHelloSLAM.cpp)
+
+# Shared library
 add_library(hello_shared SHARED libHelloSLAM.cpp)
 
-# 添加可执行程序调用hello库中函数
+# Add an executable to call functions from the hello library
 add_executable(useHello useHello.cpp)
-# 将库文件链接到可执行程序上
+# Link the library file to the executable
 target_link_libraries(useHello hello_shared)
