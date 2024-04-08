@@ -1,0 +1,9 @@
+1. g++
+* windows g++, gcc install
+https://deepprogramming.tistory.com/30
+
+* compile, execute
+g++ .\helloSLAM.cpp
+./a.exe
+
+2.
