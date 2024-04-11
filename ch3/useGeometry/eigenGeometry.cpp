@@ -1,5 +1,7 @@
-#include <iostream>
+// yejoon _USE_MATH_DEFINES: use M_PI
+#define _USE_MATH_DEFINES
 #include <cmath>
+#include <iostream>
 
 using namespace std;
 
