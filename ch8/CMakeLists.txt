@@ -9,11 +9,14 @@ find_package(OpenCV 4 REQUIRED)
 find_package(Sophus REQUIRED)
 find_package(Pangolin REQUIRED)
 
+### yejoon: window Eigen-3 directory
+include(${CMAKE_SOURCE_DIR}/../YejoonPathConfig.cmake)
+include_directories(${EIGEN_INCLUDE_DIR})
+
 include_directories(
         ${OpenCV_INCLUDE_DIRS}
         ${G2O_INCLUDE_DIRS}
         ${Sophus_INCLUDE_DIRS}
-        "/usr/include/eigen3/"
         ${Pangolin_INCLUDE_DIRS}
 )
 

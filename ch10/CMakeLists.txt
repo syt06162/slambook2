@@ -7,7 +7,9 @@ set(CMAKE_CXX_FLAGS "-std=c++11 -O2")
 list(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake_modules)
 
 # Eigen
-include_directories("/usr/include/eigen3")
+### yejoon: window Eigen-3 directory
+include(${CMAKE_SOURCE_DIR}/../YejoonPathConfig.cmake)
+include_directories(${EIGEN_INCLUDE_DIR})
 
 # sophus 
 find_package(Sophus REQUIRED)

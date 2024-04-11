@@ -10,11 +10,14 @@ find_package(OpenCV 3 REQUIRED)
 find_package(G2O REQUIRED)
 find_package(Sophus REQUIRED)
 
+### yejoon: window Eigen-3 directory
+include(${CMAKE_SOURCE_DIR}/../YejoonPathConfig.cmake)
+include_directories(${EIGEN_INCLUDE_DIR})
+
 include_directories(
         ${OpenCV_INCLUDE_DIRS}
         ${G2O_INCLUDE_DIRS}
         ${Sophus_INCLUDE_DIRS}
-        "/usr/include/eigen3/"
 )
 
 add_executable(orb_cv orb_cv.cpp)

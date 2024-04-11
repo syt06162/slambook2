@@ -1,4 +1,7 @@
-include_directories("/usr/include/eigen3")
+### yejoon: window Eigen-3 directory
+include(${CMAKE_SOURCE_DIR}/../YejoonPathConfig.cmake)
+include_directories(${EIGEN_INCLUDE_DIR})
+
 add_executable(coordinateTransform coordinateTransform.cpp)
 
 find_package(Pangolin REQUIRED)

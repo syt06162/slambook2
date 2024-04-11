@@ -7,5 +7,7 @@ set(CMAKE_CXX_FLAGS "-O3")
 
 # Add Eigen header files
 ### yejoon: window Eigen-3 directory
-include_directories("D:/c-workspace/Dependencies/eigen-3.4.0")
+include(${CMAKE_SOURCE_DIR}/../YejoonPathConfig.cmake)
+include_directories(${EIGEN_INCLUDE_DIR})
+
 add_executable(eigenMatrix eigenMatrix.cpp)

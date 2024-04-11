@@ -8,7 +8,9 @@ find_package(OpenCV REQUIRED)
 include_directories(${OpenCV_INCLUDE_DIRS})
 
 # eigen 
-include_directories("/usr/include/eigen3/")
+### yejoon: window Eigen-3 directory
+include(${CMAKE_SOURCE_DIR}/../YejoonPathConfig.cmake)
+include_directories(${EIGEN_INCLUDE_DIR})
 
 # pcl 
 find_package(PCL REQUIRED)
