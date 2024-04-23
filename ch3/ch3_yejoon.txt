@@ -10,3 +10,21 @@ must be root dir's sub directory (not sub sub)
 * each CMakeLists.txt:
 include(${CMAKE_SOURCE_DIR}/../YejoonPathConfig.cmake)
 include_directories(${EIGEN_INCLUDE_DIR})
+
+
+2-1. Library managing using vcpkg
+* install vcpkg and link with vc.
+* add system path
+* CMakeSettings.json: "variables": add
+{
+    "name": "CMAKE_TOOLCHAIN_FILE",
+    "value": "C:/vcpkg/scripts/buildsystems/vcpkg.cmake"
+}
+
+* in CMakeLists.txt
+### yejoon: window Eigen-3 directory : using vcpkg and CMAKE_TOOLCHAIN_FILE
+find_package(Eigen3 CONFIG REQUIRED)
+
+add_executable(eigenMatrix eigenMatrix.cpp)
+### yejoon: window Eigen-3 directory : using vcpkg and CMAKE_TOOLCHAIN_FILE
+target_link_libraries(eigenMatrix Eigen3::Eigen)
