@@ -1,14 +1,15 @@
 # Declare the required cmake minimum version
-cmake_minimum_required(VERSION 2.8)
-
-### yejoon: shared library using in MSVC
-if(true)
-    set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS TRUE)
-    set(BUILD_SHARED_LIBS TRUE)
-endif()
+cmake_minimum_required(VERSION 3.21)
 
 # Declare a cmake project
 project(HelloSLAM)
+
+
+### yejoon: shared library using in MSVC
+if(MSVC)
+    set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS TRUE) # essential
+    set(BUILD_SHARED_LIBS TRUE) # optional
+endif()
 
 # Set the build mode
 set(CMAKE_BUILD_TYPE "Debug")
@@ -18,9 +19,8 @@ set(CMAKE_BUILD_TYPE "Debug")
 add_executable(helloSLAM helloSLAM.cpp)
 
 
-
 # Add the hello library
-### add_library(hello libHelloSLAM.cpp)
+add_library(hello libHelloSLAM.cpp)
 
 # Shared library
 add_library(hello_shared SHARED libHelloSLAM.cpp)

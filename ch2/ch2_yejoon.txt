@@ -22,7 +22,27 @@ cmake --build build
 -> build directory on ./out/build/x64-Debug
 
 * must set MSVC settings: BUILD_SHARED_LIBS
-if(true)
-    set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS TRUE)
-    set(BUILD_SHARED_LIBS TRUE)
+** must place it AFTER "project" command
+project(HelloSLAM)
+
+if(MSVC)
+    set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS TRUE) # essential
+    set(BUILD_SHARED_LIBS TRUE) # optional
 endif()
+
+
+*** maybe optional (because if(MSVC) )
+* CMakeSettings.json ; x64
+{
+  "configurations": [
+    {
+      "name": "x64-Debug",
+      "generator": "Visual Studio 17 2022 Win64" ,
+      "configurationType": "Debug",
+      "inheritEnvironments": [ "msvc_x64_x64" ],
+    ...
+}
+
+* system path:
+SYSYEM_PATH -> PATH -> add
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\bin\Hostx64\x64
