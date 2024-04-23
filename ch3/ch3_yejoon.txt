@@ -1,0 +1,12 @@
+1. use another CMakeLists.txt (in Visual Studio)
+* Project > CMake Workspace Settings
+* CMakeWorkspaceSettings.json -> "sourceDirectory": "ch3"
+must be root dir's sub directory (not sub sub)
+
+
+2. window Eigen-3 directory : relative path
+* root directoty: YejoonPathConfig.cmake
+
+* each CMakeLists.txt:
+include(${CMAKE_SOURCE_DIR}/../YejoonPathConfig.cmake)
+include_directories(${EIGEN_INCLUDE_DIR})
