@@ -1,6 +1,7 @@
 #include <pangolin/pangolin.h>
 #include <Eigen/Core>
-#include <unistd.h>
+// #include <unistd.h> : yejoon: usleep(5000) -> Sleep(5) 
+#include <windows.h>
 
 // This example demonstrates how to draw a pre-stored trajectory
 
@@ -8,7 +9,7 @@ using namespace std;
 using namespace Eigen;
 
 // Path to trajectory file
-string trajectory_file = "./examples/trajectory.txt";
+string trajectory_file = "./trajectory.txt";
 
 void DrawTrajectory(vector<Isometry3d, Eigen::aligned_allocator<Isometry3d>>);
 
@@ -52,12 +53,15 @@ void DrawTrajectory(vector<Isometry3d, Eigen::aligned_allocator<Isometry3d>> pos
         .SetBounds(0.0, 1.0, 0.0, 1.0, -1024.0f / 768.0f)
         .SetHandler(new pangolin::Handler3D(s_cam));
 
+    // yejoon: num_pose
+    int num_pose = poses.size(); // for debug, use 30, 3, ...
+
     while (pangolin::ShouldQuit() == false) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         d_cam.Activate(s_cam);
         glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
         glLineWidth(2);
-        for (size_t i = 0; i < poses.size(); i++) {
+        for (size_t i = 0; i < num_pose ; i++) {
             // Draw the three axes of each pose
             Vector3d Ow = poses[i].translation();
             Vector3d Xw = poses[i] * (0.1 * Vector3d(1, 0, 0));
@@ -76,7 +80,7 @@ void DrawTrajectory(vector<Isometry3d, Eigen::aligned_allocator<Isometry3d>> pos
             glEnd();
         }
         // Draw the lines connecting the poses
-        for (size_t i = 0; i < poses.size(); i++) {
+        for (size_t i = 0; i < num_pose -1; i++) { // yejoon: num_ppose -1 : poses[i+1]
             glColor3f(0.0, 0.0, 0.0);
             glBegin(GL_LINES);
             auto p1 = poses[i], p2 = poses[i + 1];
@@ -85,6 +89,8 @@ void DrawTrajectory(vector<Isometry3d, Eigen::aligned_allocator<Isometry3d>> pos
             glEnd();
         }
         pangolin::FinishFrame();
-        usleep(5000);   // Sleep for 5 ms
+
+        // yejoon: usleep(5000)->Sleep(5)
+        Sleep(5);   // Sleep for 5 ms
     }
 }
